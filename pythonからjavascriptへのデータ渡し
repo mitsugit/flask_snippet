@@ -1,0 +1,40 @@
+
+############ app.py
+
+
+@app.route('/pytojs')
+def pytojs():
+	
+	text = "pythonから"
+	pydic = {"村田":"これから"}
+	
+	return render_template('python_to_javascript.html', text=text,pydic=pydic)
+
+
+
+
+############ python_to_javascript.html 
+
+<body>
+    
+    <button onclick="py_to_js()">py_to_js</button>
+    
+    <div>
+        <input type="text" id = "gaga1" name="gaga1" size="30" maxlength="20">
+        <input type="text" id = "gaga2" name="gaga2" size="30" maxlength="20">
+    </div>
+
+<script>
+
+
+function py_to_js(){
+
+  var x = {{text|tojson}};
+  var y = {{pydic|tojson}};
+  console.log(x);
+  console.log(y);
+  document.getElementById('gaga1').value = x;
+  document.getElementById('gaga2').value = y["村田"];
+}
+
+</script>
